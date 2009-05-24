@@ -1,0 +1,28 @@
+<%= erb :header %>
+
+<div class="span-16" id="maincol">
+  <h2><%= @user.username %></h2>
+  <% if @logged_in_user != @user %>
+    <div class="box">  
+      <% if @logged_in_user.following?(@user) %>
+        <a href="/<%= @logged_in_user.username %>/stopfollow/<%= @user.username %>">Stop following</a>
+      <% else %>
+        <a href="/<%= @logged_in_user.username %>/follow/<%= @user.username %>">Follow</a>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <%= erb :_posts %>
+</div>
+<div class="span-7 last" id="rightcol">
+  <div class="span-7 box">
+    <h4><%= pluralize("follower", "followers", @followers.length) %></h4>
+    <%= erb :_user_list, :locals => {:users => @followers } %>
+  </div>
+  <div class="span-7 box">
+    <h4>Following <%= @followees.length %></h4>
+    <%= erb :_user_list, :locals => {:users => @followees } %>
+  </div>
+</div>
+
+<%= erb :footer %>

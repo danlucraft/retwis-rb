@@ -1,0 +1,56 @@
+<%= erb :header %>
+
+<div class="span-11 box">
+  <h2>Login</h2>
+  
+  <% if @login_error %>
+    <div class="error">
+      <%= @login_error %>
+    </div>
+  <% end %>
+  
+  <form action="login" method="post">
+    <table>
+      <tr>
+        <td>username</td>
+        <td><input name="username" /></td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td><input type="password" name="password" /></td>
+      </tr>
+    </table>
+    <input type="submit" value="Log in" />
+  </form>
+</div>  
+
+<div class="span-11 last box">
+  <h2>Sign up</h2>
+  
+  <% if @signup_error %>
+    <div class="error">
+      <%= @signup_error %>
+    </div>
+  <% end %>
+  
+  <form action="signup" method="post">
+    <table>
+      <tr>
+        <td>username</td>
+        <td><input name="username" value="<%= params[:username] %>"/></td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td><input type="password" name="password" /></td>
+      </tr>
+      <tr>
+        <td>password again</td>
+        <td><input type="password" name="password_confirmation" /></td>
+      </tr>
+    </table>
+    <input type="submit" value="Create an account">
+  </form>
+</div>
+<%= erb :footer %>
+
+

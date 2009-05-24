@@ -1,0 +1,9 @@
+
+<ul class="user-list">
+  <% users[0..99].each do |user| %>
+    <li><%= link_to_user(user) %></li>
+  <% end %>
+</ul>
+<% if users.length > 100 %>
+... and more!
+<% end %>

@@ -1,0 +1,35 @@
+
+<%= erb :header %>
+
+<div class="span-16" id="maincol">
+  <div id="updateform" class="box">
+    <% if @posting_error %>
+      <div class="error">
+        <%= @posting_error %>
+      </div>
+    <% end %>
+    <form action="/post" method="post">
+      <%= @logged_in_user.username %>, what's on your mind? <br />
+      <textarea name="content" rows="3" columns="70"></textarea><br />
+      <input type="submit" value="Update">
+    </form>
+  </div>
+  <%= erb :_posts %>
+  
+</div>
+
+<div class="span-7 last" id="rightcol">
+  <div class="span-7 box">
+    <% followers = @logged_in_user.followers %>
+    <h4><%= pluralize("follower", "followers", followers.length) %></h4>
+    <%= erb :_user_list, :locals => {:users => followers } %>
+  </div>
+  <div class="span-7 box">
+    <% followees = @logged_in_user.followees %>
+    <h4>Following <%= followees.length %></h4>
+    <%= erb :_user_list, :locals => {:users => followees } %>
+  </div>
+</div>
+
+
+<%= erb :footer %>

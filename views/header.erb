@@ -1,0 +1,29 @@
+<ntml>
+  <head>
+    <title>Retwis-RB</title>
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print"> 
+    <!--[if IE]>
+      <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" href="/css/custom.css" type="text/css" media="screen, projection"> 
+  </head>
+  <body>
+    <br />
+    <div class="container">
+      <div id="header" class="span-24">
+        <div class="span-12">
+          <h1>Retwis-RB</h1>
+        </div>
+          <div class="span-12 last right-align">
+            <% if @logged_in_user %>
+              <br /><br />
+              <a href="/">home</a> | 
+              <%= link_to_user(@logged_in_user) %> | 
+              <a href="/timeline">timeline</a> | 
+              <a href="/logout">logout</a>
+            <% end %>
+          </div>
+        <hr />
+      </div>
+      <div class="span-24">

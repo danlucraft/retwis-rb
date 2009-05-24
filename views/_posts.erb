@@ -1,0 +1,12 @@
+
+<div id="posts" class="span-15">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <strong><%= link_to_user(post.user) %></strong>
+      <%= post.content %><br />
+      <div class="date">
+        <%= time_ago_in_words(post.created_at) %>
+      </div>
+    </div>
+  <% end %>
+</div>
