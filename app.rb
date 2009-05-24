@@ -13,8 +13,6 @@ def redis
   $redis ||= Redis.new
 end
 
-# redis.flush_db
-
 before do
   keys = redis.keys("*")
   p keys
