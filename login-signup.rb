@@ -24,7 +24,9 @@ post '/login' do
 end
 
 post '/signup' do
-  if redis.key?("user:username:#{params[:username]}")
+  if params[:username] !~ /^\w+$/
+    @signup_error = "Username must only contain letters, numbers and underscores."
+  elsif redis.key?("user:username:#{params[:username]}")
     @signup_error = "That username is taken."
   elsif params[:username].length < 4
     @signup_error = "Username must be at least 4 characters"
