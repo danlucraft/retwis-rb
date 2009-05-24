@@ -1,6 +1,4 @@
 
-require 'redis'
-
 class Timeline
   def self.page(page)
     from      = (page-1)*10
