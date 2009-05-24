@@ -45,6 +45,7 @@ end
 get '/:follower/follow/:followee' do |follower_username, followee_username|
   follower = User.find_by_username(follower_username)
   followee = User.find_by_username(followee_username)
+  redirect '/' unless @logged_in_user == follower
   follower.follow(followee)
   redirect "/" + followee_username
 end
@@ -52,6 +53,7 @@ end
 get '/:follower/stopfollow/:followee' do |follower_username, followee_username|
   follower = User.find_by_username(follower_username)
   followee = User.find_by_username(followee_username)
+  redirect '/' unless @logged_in_user == follower
   follower.stop_following(followee)
   redirect "/" + followee_username
 end
