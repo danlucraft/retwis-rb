@@ -3,10 +3,13 @@
   <% @posts.each do |post| %>
     <div class="post">
       <strong><%= link_to_user(post.user) %></strong>
-      <%= post.content %><br />
+      <%= display_post(post) %>
       <div class="date">
         <%= time_ago_in_words(post.created_at) %>
       </div>
     </div>
+  <% end %>
+  <% if @posts.empty? %>
+    No posts.
   <% end %>
 </div>

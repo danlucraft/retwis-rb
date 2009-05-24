@@ -1,0 +1,19 @@
+
+<%= erb :header %>
+
+<div class="span-16" id="maincol">
+  <h2>Mentions of: <%= @user.username %></h2>
+  <% if @logged_in_user != @user %>
+    <div class="box">  
+      <% if @logged_in_user.following?(@user) %>
+        <a href="/<%= @logged_in_user.username %>/stopfollow/<%= @user.username %>">Stop following</a>
+      <% else %>
+        <a href="/<%= @logged_in_user.username %>/follow/<%= @user.username %>">Follow</a>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <%= erb :_posts %>
+</div>
+
+<%= erb :footer %>

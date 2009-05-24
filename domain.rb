@@ -96,6 +96,13 @@ class User < Model
     end
   end
   
+  def mentions(page=1)
+    from, to = (page-1)*10, page*10
+    redis.list_range("user:id:#{id}:mentions", from, to).map do |post_id|
+      Post.new(post_id)
+    end
+  end
+  
   def add_post(post)
     redis.push_head("user:id:#{id}:posts", post.id)
     redis.push_head("user:id:#{id}:timeline", post.id)
@@ -103,6 +110,10 @@ class User < Model
   
   def add_timeline_post(post)
     redis.push_head("user:id:#{id}:timeline", post.id)
+  end
+  
+  def add_mention(post)
+    redis.push_head("user:id:#{id}:mentions", post.id)
   end
   
   def follow(user)
@@ -154,6 +165,11 @@ class Post < Model
     redis.push_head("timeline", post_id)
     post.user.followers.each do |follower|
       follower.add_timeline_post(post)
+    end
+    content.scan(/@\w+/).each do |mention|
+      if user = User.find_by_username(mention[1..-1])
+        user.add_mention(post)
+      end
     end
   end
   

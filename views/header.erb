@@ -19,7 +19,8 @@
             <% if @logged_in_user %>
               <br /><br />
               <a href="/">home</a> | 
-              <%= link_to_user(@logged_in_user) %> | 
+              <a href="/<%= @logged_in_user.username %>/mentions">mentions</a> | 
+                <%= link_to_user(@logged_in_user) %> | 
               <a href="/timeline">timeline</a> | 
               <a href="/logout">logout</a>
             <% end %>

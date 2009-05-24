@@ -9,6 +9,7 @@
       <% else %>
         <a href="/<%= @logged_in_user.username %>/follow/<%= @user.username %>">Follow</a>
       <% end %>
+      | <a href="/<%= @user.username %>/mentions">See mentions</a>
     </div>
   <% end %>
   

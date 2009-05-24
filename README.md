@@ -1,7 +1,7 @@
 Retwis-RB
 =========
 
-An example application using the Redis key-value database.
+An example Twitter application using the Redis key-value database.
 
 Daniel Lucraft (dan@fluentradical.com)
 

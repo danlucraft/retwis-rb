@@ -15,7 +15,6 @@ end
 
 before do
   keys = redis.keys("*")
-  p keys
 end
 
 get '/' do
@@ -66,11 +65,16 @@ get '/:username' do |username|
   erb :profile
 end
 
+get '/:username/mentions' do |username|
+  @user = User.find_by_username(username)
+  @posts = @user.mentions
+  erb :mentions
+end
 
 helpers do
   def link_to_user(user)
     f = <<-HTML
-      <a href="/#{user.username}">#{user.username}</a>
+<a href="/#{user.username}">#{user.username}</a>
     HTML
   end
   
@@ -79,6 +83,16 @@ helpers do
       count.to_s + " " + singular
     else
       count.to_s + " " + plural
+    end
+  end
+  
+  def display_post(post)
+    post.content.gsub(/@\w+/) do |mention|
+      if user = User.find_by_username(mention[1..-1])
+        "@" + link_to_user(user)
+      else
+        mention
+      end
     end
   end
 
