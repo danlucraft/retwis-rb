@@ -10,7 +10,7 @@ Requirements
 
  * Ruby
  * Sinatra: sudo gem install sinatra
- * Redis: http://code.google.com/p/redis/
+ * Redis: http://redis.io/
 
 Starting Application
 --------------------
